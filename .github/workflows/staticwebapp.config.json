@@ -1,0 +1,32 @@
+{
+    "routes":  [
+                   {
+                       "route":  "/.auth/login/aad",
+                       "allowedRoles":  [
+                                            "anonymous"
+                                        ]
+                   },
+                   {
+                       "route":  "/.auth/logout",
+                       "allowedRoles":  [
+                                            "anonymous"
+                                        ]
+                   },
+                   {
+                       "route":  "/*",
+                       "allowedRoles":  [
+                                            "portal_user"
+                                        ]
+                   }
+               ],
+    "responseOverrides":  {
+                              "401":  {
+                                          "redirect":  "/.auth/login/aad",
+                                          "statusCode":  302
+                                      },
+                              "403":  {
+                                          "rewrite":  "/unauthorized.html",
+                                          "statusCode":  403
+                                      }
+                          }
+}
